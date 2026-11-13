@@ -1,0 +1,37 @@
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 480px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    color: #222;
+}
+
+label {
+    display: block;
+    margin: 0.75rem 0;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#message {
+    min-height: 1.5em;
+    font-weight: bold;
+}
+
+.hint {
+    color: #666;
+    font-size: 0.9rem;
+}

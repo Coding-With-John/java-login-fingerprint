@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Demo - Fingerprint check</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+    <h1>Login</h1>
+    <p id="fp-status">Identifying this device...</p>
+
+    <form id="login-form">
+        <label>
+            Username
+            <input type="text" id="username" value="demo" autocomplete="username">
+        </label>
+        <label>
+            Password
+            <input type="password" id="password" value="password123" autocomplete="current-password">
+        </label>
+        <button type="submit">Log in</button>
+    </form>
+
+    <p id="message"></p>
+
+    <section id="protected" hidden>
+        <h2>You are in</h2>
+        <p>Logged in as <strong id="who"></strong>.</p>
+        <p id="fp-detail"></p>
+        <button id="logout">Log out</button>
+    </section>
+
+    <p class="hint">Demo users: demo / password123, alice / correct-horse</p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
