@@ -2,8 +2,8 @@ package com.codingwithjohn.login.auth;
 
 import com.codingwithjohn.login.fingerprint.LoginAttemptTracker;
 import com.codingwithjohn.login.fingerprint.LoginGate;
-import com.codingwithjohn.login.user.AppUser;
-import com.codingwithjohn.login.user.UserRepository;
+import com.codingwithjohn.login.user.User;
+import com.codingwithjohn.login.user.UserStore;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +26,13 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class AuthController {
 
-    private final UserRepository users;
+    private final UserStore users;
     private final PasswordEncoder passwords;
     private final LoginGate gate;
     private final LoginAttemptTracker tracker;
     private final String publicKey;
 
-    public AuthController(UserRepository users, PasswordEncoder passwords,
+    public AuthController(UserStore users, PasswordEncoder passwords,
                           LoginGate gate, LoginAttemptTracker tracker,
                           @Value("${fingerprint.public-key:}") String publicKey) {
         this.users = users;
@@ -67,7 +67,7 @@ public class AuthController {
         }
 
         // 2. Then the normal password check.
-        Optional<AppUser> user = users.findByUsername(request.username());
+        Optional<User> user = users.findByUsername(request.username());
         if (user.isEmpty() || !passwords.matches(request.password(), user.get().getPasswordHash())) {
             tracker.recordFailure(decision.check().visitorId());
             return ResponseEntity.status(401)

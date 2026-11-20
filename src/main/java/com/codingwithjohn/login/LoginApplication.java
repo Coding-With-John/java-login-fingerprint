@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Run with: ./mvnw spring-boot:run
  * Then open: http://localhost:8080
  *
- * Demo users (see DataInitializer): demo / password123, alice / correct-horse
+ * Demo users (see UserStore): demo / password123, alice / correct-horse
  */
 @SpringBootApplication
 public class LoginApplication {

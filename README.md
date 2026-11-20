@@ -73,7 +73,7 @@ On Windows: `powershell -File demo/stuffing-demo.ps1`
   for a one-time code first.
 - **In-memory attempt tracking.** `LoginAttemptTracker` resets on restart.
   A real deployment would use Redis or the database.
-- **Demo users and dev database.** H2 in-memory, two seeded users with
+- **Demo users are hardcoded.** `UserStore` holds two demo users with
   demo passwords. Not production data handling.
 
 ## Project layout
@@ -82,13 +82,13 @@ On Windows: `powershell -File demo/stuffing-demo.ps1`
 - `fingerprint/` - the Fingerprint pattern (interface, stub, real service,
   config, attempt tracker, login gate). This package is identical in the
   sibling repo `java-jwt-auth-fingerprint`.
-- `user/` - the demo user entity and repository
-- `config/` - password hashing (BCrypt) and demo-user seeding
+- `user/` - a plain hardcoded user store (no database)
+- `config/` - password hashing (BCrypt)
 - `static/` - plain HTML/JS login page
 - `demo/` - credential-stuffing demo scripts
 
 ## Tech
 
-Java 21, Spring Boot 3.5.4, Maven, Spring Web + Spring Data JPA + H2.
+Java 21, Spring Boot 3.5.4, Maven, Spring Web only.
 No Spring Security web filters: password hashing uses only the
 `spring-security-crypto` module, so the login flow stays plain and visible.
